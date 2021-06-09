@@ -13,10 +13,11 @@
 </head>
 <body>
 <div class="container">
-    <div style="height: 30px;" class="mt-3">
+{{--    <div style="height: 30px;" class="mt-3">--}}
         @if (session('status-delete'))
-            <div id="status" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div id="status" class="position-absolute top-0 end-0 alert alert-danger alert-dismissible fade show" role="alert">
                 {{ session('status-delete') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         @if (session('status-update'))
@@ -24,7 +25,7 @@
                 {{ session('status-update') }}
             </div>
         @endif
-    </div>
+{{--    </div>--}}
 
     <a href="{{ route('tasks.create') }}" class="btn btn-info my-5">Create Task</a>
 
