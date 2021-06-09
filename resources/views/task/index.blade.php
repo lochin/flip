@@ -13,7 +13,21 @@
 </head>
 <body>
 <div class="container">
+    <div style="height: 30px;" class="mt-3">
+        @if (session('status-delete'))
+            <div id="status" class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('status-delete') }}
+            </div>
+        @endif
+        @if (session('status-update'))
+            <div id="status" class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ session('status-update') }}
+            </div>
+        @endif
+    </div>
+
     <a href="{{ route('tasks.create') }}" class="btn btn-info my-5">Create Task</a>
+
     <h1 class="text-center text-uppercase">All Tasks</h1>
     <table class="table table-striped">
         <thead>
@@ -35,7 +49,8 @@
                 <td>{{ $task->created_at }}</td>
                 <td>{{ $task->updated_at }}</td>
                 <td>
-                    <a class="btn btn-link" href="{{ route('tasks.edit', [$task]) }}"><i class="bi bi-pencil-square"></i></a>
+                    <a class="btn btn-link" href="{{ route('tasks.edit', [$task]) }}"><i
+                            class="bi bi-pencil-square"></i></a>
                     <form action="{{ route('tasks.destroy', [$task]) }}" method="POST" class="d-inline">
                         @method('DELETE')
                         @csrf
@@ -60,5 +75,12 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 -->
+<script>
+    setTimeout(function () {
+        var status = document.getElementById('status');
+        var status_instance = new bootstrap.Alert(status)
+        status_instance.close();
+    }, 2000);
+</script>
 </body>
 </html>

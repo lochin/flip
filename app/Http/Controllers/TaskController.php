@@ -88,7 +88,7 @@ class TaskController extends Controller
         $task->body = $request->body;
         $task->save();
 
-        return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index')->with('status-update', 'Task updated successfully!');
     }
 
     /**
@@ -100,6 +100,6 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
-        return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index')->with('status-delete', 'Task deleted successfully!');
     }
 }
